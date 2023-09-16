@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <title>Create a list!</title>
+</head>
+<body>
+
+
+<!--give an ID to all elements that JS needs to work with-->
+<ul id="list-of-text">
+    <!--create ui elements in JS-->
+</ul>
+
+<p>You have <span id= "item-count">0</span> item(s)</p>
+
+<input id="new-text">
+<button id="add-text-button">Add new item</button>
+
+<button id="clear-list">Clear List</button>
+
+
+<script>
+    // Create cariable in JavaScrip, one to represent
+    // each HTML element that Js needs to work with
+
+    // JS needs to add new elements to the list
+    let listOfTextElement = document.querySelector('#list-of-text')
+
+    // JS nees to know what is typed into the input - anbd we need to clean
+    let newTextInputElement = document.querySelector('#new-text')
+
+    // JS needs to know when this button is clicked
+    let addTextButtonElement = document.querySelector('#add-text-button')
+
+    let clearListButtonElement = document.querySelector('#clear-list')
+
+    let itemCountElement = document.querySelector('#item-count')
+
+    let numberOfItemsInList = 0
+
+    // The page only does something when the user clicks
+    // the button, so start by adding an event listener for click event
+    addTextButtonElement.addEventListener('click', function() {
+        if (numberOfItemsInList >= 10) { //can't add any more items
+            alert('Too many items')
+            return // end the function - don't do anything else
+        }
+    
+        // Read the text the user typed into the input
+        let newText = newTextInputElement.value
+        let charactersEntered = newText.length // how many letters?
+
+        if (charactersEntered == 0) {
+            return // do nothing - don't do anything else, no error message needed
+        }
+
+        if (charactersEntered > 50) {
+            alert('Text is too long, you entered ' + charactersEntered + ' characthers. Max lenght is 50')
+            return // don't add to list
+        }
+
+        let newListItem = document.createElement('li') // Make new li element
+        newListItem.innerHTML = newText // set the teext of li to the new text
+
+        // where does this element go on the page?
+        //add it as a child of the ul list element 
+        listOfTextElement.appendChild(newListItem)
+
+        //// Clear the input txt so user can enter another item
+        newTextInputElement.value = '' //set to empty string
+        numberOfItemsInList = numberOfItemsInList + 1 // add 1 to count of list itmes
+        itemCountElement.innerHTML = numberOfItemsInList // update item count display
+    })
+
+   clearListButtonElement.addEventListener('click', function() {
+        listOfTextElement.innerHTML = '' //clear the inner HTML
+        numberOfItemsInList = 0 // update data
+        itemCountElement.innerHTML = numberOfItemsInList // update HTML
+   })
+
+</script>
+
+</body>
+</html>
