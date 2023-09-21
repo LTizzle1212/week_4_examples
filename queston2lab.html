@@ -58,19 +58,19 @@
 
     document.getElementById('student-count').innerHTML = 0; // this will display 0
 
-    let studentName = document.querySelector('student-name') // this creates a variable for student-name
-    let addStudent = document.querySelector('add-student') // this creates a variable for add-student
-    let studentId = document.querySelector('student-id') // this creates a variable for student-id
-    let gpa = document.querySelector('student-gpa') // this creates a variable for student-gpa
+    let studentName = document.querySelector('#student-name') // this creates a variable for student-name
+    let addStudent = document.querySelector('#add-student') // this creates a variable for add-student
+    let studentId = document.querySelector('#student-id') // this creates a variable for student-id
+    let gpa = document.querySelector('#student-gpa') // this creates a variable for student-gpa
     let remove = document.querySelector('remove-selected-students') // this creates a variable for remove-selected-students
     
 
 
-    document.addEventListener('click', function(){
+    addStudent.addEventListener('click', function(){
         let name = studentName.value  // Reading the value from the studentName input & saving in a variable
 
-        if (name.length == 0) { // maybe add .length to the end of name?
-            alert('Error, please enter name') // this will show an alert if no studenrName is entered
+        if (name == '') { // maybe add .length to the end of name?
+            alert("Error, please enter name") // this will show an alert if no studenrName is entered
             return
         }
     
@@ -83,10 +83,12 @@
 
         let student_gpa = gpa.value // Reading the value from the gpa input & saving in a variable
         
-        if (student_gpa.length == 0) {
+        if (student_gpa >= 0 && student_gpa <= 4) { // come back to this 
             alert('Error, please enter GPA') // this will show an alert if no gpa is entered
             return
         }
+
+        // condition statement 0 - 4 for multiple conditonals 
 
 
         let listOfStudents = document.createElement('li') // new li element
