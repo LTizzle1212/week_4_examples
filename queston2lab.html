@@ -62,7 +62,7 @@
     let addStudent = document.querySelector('#add-student') // this creates a variable for add-student
     let studentId = document.querySelector('#student-id') // this creates a variable for student-id
     let gpa = document.querySelector('#student-gpa') // this creates a variable for student-gpa
-    let remove = document.querySelector('remove-selected-students') // this creates a variable for remove-selected-students
+    let remove = document.querySelector('#remove-selected-students') // this creates a variable for remove-selected-students
     
 
 
@@ -83,7 +83,7 @@
 
         let student_gpa = gpa.value // Reading the value from the gpa input & saving in a variable
         
-        if (student_gpa >= 0 && student_gpa <= 4) { 
+        if (student_gpa < 0 && student_gpa > 4) { 
             alert('Error, please enter GPA') // this will show an alert if no gpa is entered
             return
         }
@@ -93,23 +93,20 @@
 
         let listOfStudents = document.createElement('li') // new li element
         let combinedInput = name + id + student_gpa
-        listOfStudents.innerHTML = combinedInput.value // this creates a variable that combines all of the results for the li element
+        //listOfStudents.innerHTML = combinedInput.value // this creates a variable that combines all of the results for the li element
 
         listOfStudents.addEventListener('click', function() {
-        listOfStudents.classList.add('add-student')  // this will add the class "selected" to that li element
-        listOfStudents.classList.toggle('add-student') // this will remove the class "selected" from that li element
-
+            listOfStudents.classList.toggle('add-student') // this will add the class "selected" from that li element
+        }) // end of event listener
 
         let studentList = document.getElementById('student-list')
         studentList.appendChild(listOfStudents) // this will add the new li element to ul#student-list element
 
-         // this will clera the input of the three element values
+         // this will clear the input of the three element values
         let studentCount = document.querySelector('student-count')
         combinedInput.value = '' // this will set the empty string
         studentCount = studentCount + 1 // this will add 1 to the count of list items
         addStudent.innerHTML = studentCount  // this will update the count
-
-        })
     })
 
 
