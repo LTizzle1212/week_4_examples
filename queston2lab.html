@@ -93,7 +93,7 @@
 
         let listOfStudents = document.createElement('li') // new li element
         let combinedInput = name + id + student_gpa
-        //listOfStudents.innerHTML = combinedInput.value // this creates a variable that combines all of the results for the li element
+        listOfStudents.innerHTML = combinedInput // this creates a variable that combines all of the results for the li element
 
         listOfStudents.addEventListener('click', function() {
             listOfStudents.classList.toggle('add-student') // this will add the class "selected" from that li element
@@ -103,10 +103,10 @@
         studentList.appendChild(listOfStudents) // this will add the new li element to ul#student-list element
 
          // this will clear the input of the three element values
-        let studentCount = document.querySelector('student-count')
+        let studentCountElement = document.querySelector('#student-count')
         combinedInput.value = '' // this will set the empty string
         studentCount = studentCount + 1 // this will add 1 to the count of list items
-        addStudent.innerHTML = studentCount  // this will update the count
+        addStudent.innerHTML = studentCountElement  // this will update the count
     })
 
 
