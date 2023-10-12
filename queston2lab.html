@@ -63,6 +63,7 @@
     let studentId = document.querySelector('#student-id') // this creates a variable for student-id
     let gpa = document.querySelector('#student-gpa') // this creates a variable for student-gpa
     let remove = document.querySelector('#remove-selected-students') // this creates a variable for remove-selected-students
+    let studentCount = 0
     
 
 
@@ -91,31 +92,44 @@
         // condition statement 0 - 4 for multiple conditonals 
 
 
-        let listOfStudents = document.createElement('li') // new li element
+        let newStudentListItem = document.createElement('li') // new li element
         let combinedInput = name + id + student_gpa
-        listOfStudents.innerHTML = combinedInput // this creates a variable that combines all of the results for the li element
+        newStudentListItem.innerHTML = combinedInput // this creates a variable that combines all of the results for the li element
 
-        listOfStudents.addEventListener('click', function() {
-            listOfStudents.classList.toggle('add-student') // this will add the class "selected" from that li element
+        newStudentListItem.addEventListener('click', function() {
+            newStudentListItem.classList.toggle('selected') // this will add the class "selected" from that li element
         }) // end of event listener
 
         let studentList = document.getElementById('student-list')
-        studentList.appendChild(listOfStudents) // this will add the new li element to ul#student-list element
+        studentList.appendChild(newStudentListItem) // this will add the new li element to ul#student-list element
 
          // this will clear the input of the three element values
         let studentCountElement = document.querySelector('#student-count')
-        combinedInput.value = '' // this will set the empty string
+        
+        //combinedInput.value = '' // this will set the empty string
         studentCount = studentCount + 1 // this will add 1 to the count of list items
-        addStudent.innerHTML = studentCountElement  // this will update the count
+        studentCountElement.innerHTML = studentCount  // this will update the count
     })
 
 
-    remove.addEventListener('click', function() {
-        studentList.innerHTML = '' // this will clear the inner HTML
-        studentCount = 0 // this will update the data
-        addStudent.innerHTML = studentCount // this will update the HTML
+    // only delete selected  - looking into jsfiddle.net lab
 
+    let deleteButtonElement = document.querySelector('remove-selected-students')
+
+    deleteButtonElement.addEventListener('click', function() {
+        let elementsToDelete = document.querySelectorAll('.selected') // this will remove what is selected on the list 
+        elementsToDelete.forEach( function(element) {
+            element.remove
+        })
     })
+
+
+    // remove.addEventListener('click', function() {
+    //     studentList.innerHTML = '' // this will clear the inner HTML
+    //     studentCount = 0 // this will update the data
+    //     addStudent.innerHTML = studentCount // this will update the HTML
+
+    // })
 
     /* Add the following functionality to this page
 
